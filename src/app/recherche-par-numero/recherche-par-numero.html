@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2>Recherche par numéro</h2>
+
+  <div class="mb-3">
+    <label for="numero" class="form-label">Choisir un numéro</label>
+    <input
+      type="text"
+      id="numero"
+      class="form-control"
+      [(ngModel)]="numero"
+      (input)="rechercher()"
+      placeholder="Saisir le numéro de chambre"
+    />
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Numéro</th>
+      <th>Type</th>
+      <th>Prix par nuit</th>
+      <th>Hôtel</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @for (chambre of chambres; track chambre.idChambre) {
+    <tr>
+      <td>{{ chambre.idChambre }}</td>
+      <td>{{ chambre.numeroChambre }}</td>
+      <td>{{ chambre.typeChambre }}</td>
+      <td>{{ chambre.prixNuit }}</td>
+      <td>{{ chambre.hotel?.nomHotel }}</td>
+    </tr>
+    } @empty {
+    <tr>
+      <td colspan="5" class="text-center">
+        Aucune chambre trouvée
+      </td>
+    </tr>
+    }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,55 @@
+<div class="container mt-3">
+  <h3>{{ ajout ? 'Ajouter une chambre' : 'Modifier une chambre' }}</h3>
+
+  <form (ngSubmit)="saveChambre()">
+    @if (!ajout) {
+    <div class="mb-3">
+      <label class="form-label">ID Chambre</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="chambre.idChambre"
+        name="idChambre"
+        readonly
+      />
+    </div>
+    }
+
+    <div class="mb-3">
+      <label class="form-label">Numéro de chambre</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="chambre.numeroChambre"
+        name="numeroChambre"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Type de chambre</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="chambre.typeChambre"
+        name="typeChambre"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Prix par nuit</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="chambre.prixNuit"
+        name="prixNuit"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {{ ajout ? 'Ajouter' : 'Modifier' }}
+    </button>
+  </form>
+</div>

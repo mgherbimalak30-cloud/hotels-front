@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h2>Recherche par hôtel</h2>
+
+  <div class="mb-3">
+    <label for="hotel" class="form-label">Choisir un hôtel</label>
+
+    <select
+      id="hotel"
+      class="form-select"
+      [(ngModel)]="selectedHotelId"
+      (change)="onChangeHotel()">
+
+      <option [ngValue]="null">Tous les hôtels</option>
+
+      @for (hotel of hotels; track hotel.idHotel) {
+      <option [ngValue]="hotel.idHotel">
+        {{ hotel.nomHotel }}
+      </option>
+      }
+    </select>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Numéro</th>
+      <th>Type</th>
+      <th>Prix par nuit</th>
+      <th>Hôtel</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @for (chambre of chambresFiltrees; track chambre.idChambre) {
+    <tr>
+      <td>{{ chambre.idChambre }}</td>
+      <td>{{ chambre.numeroChambre }}</td>
+      <td>{{ chambre.typeChambre }}</td>
+      <td>{{ chambre.prixNuit }}</td>
+      <td>{{ chambre.hotel.nomHotel }}</td>
+    </tr>
+    } @empty {
+    <tr>
+      <td colspan="5" class="text-center">
+        Aucune chambre trouvée
+      </td>
+    </tr>
+    }
+    </tbody>
+  </table>
+</div>

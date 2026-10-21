@@ -1,0 +1,58 @@
+
+<div class="container mt-4">
+  <h2>Liste des chambres</h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Numéro</th>
+      <th>Type</th>
+      <th>Prix par nuit</th>
+      <th>Hôtel</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @for (chambre of chambres; track chambre.idChambre) {
+    <tr>
+      <td>{{ chambre.idChambre }}</td>
+      <td>{{ chambre.numeroChambre }}</td>
+      <td>{{ chambre.typeChambre }}</td>
+      <td>{{ chambre.prixNuit }}</td>
+      <td>{{ chambre.hotel?.nomHotel }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-warning btn-sm"
+          (click)="modifierChambre(chambre)">
+          Modifier
+        </button>
+      </td>
+    </tr>
+    } @empty {
+    <tr>
+      <td colspan="6" class="text-center">
+        Aucune chambre trouvée
+      </td>
+    </tr>
+    }
+    </tbody>
+  </table>
+
+  @if (modeModification && chambreSelectionnee) {
+  <app-update-chambre-input
+    [chambre]="chambreSelectionnee"
+    [ajout]="false"
+    (chambreUpdated)="recevoirChambreModifiee($event)">
+  </app-update-chambre-input>
+
+  <button
+    type="button"
+    class="btn btn-secondary mt-2"
+    (click)="annulerModification()">
+    Annuler
+  </button>
+  }
+</div>

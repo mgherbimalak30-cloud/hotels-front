@@ -1,0 +1,41 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Numéro</th>
+    <th>Type</th>
+    <th>Prix par nuit</th>
+    <th>Date d'ajout</th>
+    <th>Hôtel</th>
+    <th colspan="2">Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  @for (chambre of chambres; track chambre.idChambre) {
+  <tr>
+    <td>{{ chambre.idChambre }}</td>
+    <td>{{ chambre.numeroChambre }}</td>
+    <td>{{ chambre.typeChambre }}</td>
+    <td>{{ chambre.prixNuit }}</td>
+    <td>{{ chambre.dateAjout | date:'dd/MM/yyyy' }}</td>
+    <td>{{ chambre.hotel.nomHotel }}</td>
+    <td>
+      <a class="btn btn-danger" (click)="supprimerChambre(chambre)">
+        Supprimer
+      </a>
+    </td>
+    <td>
+      <a class="btn btn-success"
+         [routerLink]="['/updateChambre', chambre.idChambre]">
+        Modifier
+      </a>
+    </td>
+  </tr>
+  } @empty {
+  <tr>
+    <td colspan="8">Aucune chambre trouvée !</td>
+  </tr>
+  }
+  </tbody>
+</table>

@@ -1,0 +1,65 @@
+
+<div class="container">
+  <div>
+    <h2>Modifier une Chambre :</h2>
+  </div>
+
+  <form (ngSubmit)="updateChambre()">
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Chambre</label>
+      <input readonly type="text"
+             [(ngModel)]="currentChambre.idChambre"
+             name="idChambre" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Numéro</label>
+      <input type="text"
+             [(ngModel)]="currentChambre.numeroChambre"
+             name="numeroChambre" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Type</label>
+      <input type="text"
+             [(ngModel)]="currentChambre.typeChambre"
+             name="typeChambre" class="form-control">
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix par nuit</label>
+      <input type="number"
+             [(ngModel)]="currentChambre.prixNuit"
+             name="prixNuit" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date d'ajout</label>
+      <input type="date"
+             [ngModel]="currentChambre.dateAjout | date:'yyyy-MM-dd'"
+             (ngModelChange)="currentChambre.dateAjout = $event"
+             name="dateAjout" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Hôtel</label>
+      <select class="form-control form-control-lg"
+              id="idHotel"
+              name="idHotel"
+              [(ngModel)]="updatedHotelId">
+
+        @for (h of hotels; track h.idHotel) {
+        <option [ngValue]="h.idHotel">
+          {{ h.nomHotel }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <div class="mt-2">
+      <button type="submit" class="btn btn-success">
+        Modifier
+      </button>
+    </div>
+  </form>
+</div>
